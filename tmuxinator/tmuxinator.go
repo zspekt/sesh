@@ -19,5 +19,7 @@ func NewTmuxinator(shell shell.Shell) Tmuxinator {
 }
 
 func (t *RealTmuxinator) Start(targetSession string) (string, error) {
+	// --suppress-tmux-version-warning flag for tmux versions unsupported by tmuxinator.
+	// otherwise you get a warning that blocks the shell and requires input user to go away
 	return t.shell.Cmd("tmuxinator", "start", targetSession, "--suppress-tmux-version-warning")
 }
