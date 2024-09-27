@@ -11,6 +11,8 @@ import (
 
 type Shell interface {
 	Cmd(cmd string, arg ...string) (string, error)
+
+	// runs cmd with args and returns a slice where each element is a line from cmd's output
 	ListCmd(cmd string, arg ...string) ([]string, error)
 }
 
