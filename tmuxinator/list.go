@@ -7,7 +7,7 @@ import (
 )
 
 func (t *RealTmuxinator) List() ([]*model.TmuxinatorConfig, error) {
-	// passing the --newline -n flag results in more consistent output,
+	// passing the --newline -n flag provides more consistent output,
 	// regardless of the amount of entries 'list' returns
 	res, err := t.shell.ListCmd("tmuxinator", "list", "--newline")
 	if err != nil {
@@ -15,7 +15,7 @@ func (t *RealTmuxinator) List() ([]*model.TmuxinatorConfig, error) {
 		return []*model.TmuxinatorConfig{}, nil
 	}
 	// first line is not a tmuxinator proj, and last one is empty
-	return parseTmuxinatorConfigsOutput(res[1 : len(res)-1])
+	return parseTmuxinatorConfigsOutput(res[1:])
 }
 
 func parseTmuxinatorConfigsOutput(list []string) ([]*model.TmuxinatorConfig, error) {
